@@ -22,11 +22,13 @@ func main() {
 	if err != nil {
 		logrus.WithFields(logrus.Fields{
 			"config": dbConfig,
-		}).Error("[Config] Failed to load server config")
+		}).Error("[Config] Failed to load db config")
 	}
 	servConf, err := config.InitServerConfig()
 	if err != nil {
-		logrus.Info("[Config] Failed to load server config")
+		logrus.WithFields(logrus.Fields{
+			"config": servConf,
+		}).Error("[Config] Failed to load server config")
 	}
 
 	db := database.GetDatabaseConnection(dbConfig)
