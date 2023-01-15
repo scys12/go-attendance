@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"strconv"
 	"syscall"
 	"time"
 
@@ -19,9 +20,15 @@ type Config struct {
 }
 
 func Serve(cfg Config, router http.Handler) {
+	var port string
+	if len(os.Getenv("PORT")) > 0 {
+		port = os.Getenv("PORT")
+	} else {
+		port = strconv.Itoa(cfg.Port)
+	}
 	srv := &http.Server{
 		Handler:      router,
-		Addr:         fmt.Sprint(":", cfg.Port),
+		Addr:         fmt.Sprint(":", port),
 		WriteTimeout: cfg.WriteTimeout,
 		ReadTimeout:  cfg.ReadTimeout,
 	}
