@@ -20,7 +20,9 @@ func main() {
 	logrus.SetFormatter(&logrus.JSONFormatter{})
 	dbConfig, err := config.InitDBConfig()
 	if err != nil {
-		logrus.Info("[Config] Failed to load db config")
+		logrus.WithFields(logrus.Fields{
+			"config": dbConfig,
+		}).Error("[Config] Failed to load server config")
 	}
 	servConf, err := config.InitServerConfig()
 	if err != nil {
