@@ -22,6 +22,7 @@ var (
 	ErrTokenAuthentication = errors.New("token authentication failed")
 	ErrEmailPasswordWrong  = errors.New("email/password is wrong")
 	ErrEmailNotFound       = errors.New("email is not found")
+	ErrEmailExists         = errors.New("email exists in the system")
 
 	ErrTokenUnexpectedMethod = errors.New("unexpected signed methods")
 	ErrTokenFailedClaim      = errors.New("failed when claiming token")

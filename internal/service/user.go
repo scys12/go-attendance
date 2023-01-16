@@ -30,7 +30,7 @@ func (u *UserService) RegisterUser(req models.RegisterRequest) (*models.User, er
 	}
 
 	if isEmailExist {
-		return nil, err
+		return nil, types.ErrEmailExists
 	}
 
 	pwd, err := bcrypt.GenerateFromPassword([]byte(req.Password), bcrypt.DefaultCost)

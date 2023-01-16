@@ -26,6 +26,7 @@ func Serve(cfg Config, router http.Handler) {
 	} else {
 		port = strconv.Itoa(cfg.Port)
 	}
+
 	srv := &http.Server{
 		Handler:      router,
 		Addr:         fmt.Sprint(":", port),
